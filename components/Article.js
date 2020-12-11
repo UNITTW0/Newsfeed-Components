@@ -95,10 +95,10 @@ const data = [
   and returns a DOM node looking like the one below:
 
   <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
+    "date">{date of the article}</p>
 
-    {three separate paragraph elements}
+    {thr<h2>{title of the article}</h2>
+    <p class=ee separate paragraph elements}
 
     <span class="expandButton">+</span>
   </div>
@@ -114,3 +114,50 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+const articleMaker = (article) =>{
+  const div= document.createElement('div')
+  div.classList.add('article')
+
+  const h2= document.createElement('h2')
+  h2.textContent = article.title;
+  div.append(h2)
+
+  const date = document.createElement('p')
+  date.innerHTML = article.date
+  date.classList.add('date')
+  div.append(date)
+
+  const para1 = document.createElement('p')
+  para1.innerHTML = article.firstParagraph;
+  div.append(para1)
+
+  const para2 = document.createElement('p')
+  para2.innerHTML = article.secondParagraph;
+  div.append(para2)
+
+  const para3 = document.createElement('p')
+  para3.innerHTML = article.thirdParagraph;
+  div.append(para3)
+
+  const span = document.createElement('span')
+  span.classList.add('expandButton')
+  span.innerHTML = '+'
+  div.append(span)
+
+
+  span.addEventListener('click' , () =>{
+    div.classList.toggle('article-open')
+  })
+  return div;
+
+};
+
+const articles = document.querySelector('.articles')
+
+data.forEach(article => {
+  articles.appendChild(articleMaker(article))
+  
+});
+
+
